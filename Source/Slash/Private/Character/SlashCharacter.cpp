@@ -1,16 +1,18 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Character/TioCharacter.h"
+#include "Character/SlashCharacter.h"
 
+#include "AbilitySystemComponent.h"
 #include "GroomComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Player/SlashPlayerState.h"
 
-ATioCharacter::ATioCharacter()
+ASlashCharacter::ASlashCharacter()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArmComponent");
 	SpringArmComponent->SetupAttachment(RootComponent);
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
@@ -32,26 +34,28 @@ ATioCharacter::ATioCharacter()
 	
 }
 
-
-void ATioCharacter::BeginPlay()
+void ASlashCharacter::PossessedBy(AController* NewController)
 {
-	Super::BeginPlay();
-	
+	Super::PossessedBy(NewController);
+
+	// Server
+	InitialAbilityActorInfo();
 }
 
-void ATioCharacter::Tick(float DeltaTime)
+void ASlashCharacter::OnRep_PlayerState()
 {
-	Super::Tick(DeltaTime);
+	Super::OnRep_PlayerState();
 
-	// const FRotator ControlRot= GetControlRotation();
-	// const FRotator YawRot = FRotator(0.f, ControlRot.Yaw, 0.f);
-	//
-	// const FVector ForwardVector = FRotationMatrix(YawRot).GetUnitAxis(EAxis::X);
-	// DrawDebugLine(GetWorld(), GetActorLocation(), GetActorLocation() + (ForwardVector * 500.f), FColor::Red, false);
+	InitialAbilityActorInfo();
 }
 
-void ATioCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void ASlashCharacter::InitialAbilityActorInfo()
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	ASlashPlayerState* SlashPS = Cast<ASlashPlayerState>(GetPlayerState());
+	check(SlashPS);
 
+	AbilitySystemComponent = SlashPS->GetAbilitySystemComponent();
+	AbilitySystemComponent->InitAbilityActorInfo(SlashPS, this);
+	AttributeSet = SlashPS->GetAttributeSet();
 }
+

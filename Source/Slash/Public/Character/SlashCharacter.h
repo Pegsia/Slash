@@ -3,29 +3,29 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
-#include "TioCharacter.generated.h"
+#include "SlashCharacterBase.h"
+#include "SlashCharacter.generated.h"
 
 class UGroomComponent;
 class USpringArmComponent;
 class UCameraComponent;
 
 UCLASS()
-class SLASH_API ATioCharacter : public ACharacter
+class SLASH_API ASlashCharacter : public ASlashCharacterBase
 {
 	GENERATED_BODY()
 
 public:
-	ATioCharacter();
+	ASlashCharacter();
 
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
+	
 protected:
-	virtual void BeginPlay() override;
-
-public:	
-	virtual void Tick(float DeltaTime) override;
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
+	virtual void InitialAbilityActorInfo() override;
+	
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 	TObjectPtr<UCameraComponent> CameraComponent;
 

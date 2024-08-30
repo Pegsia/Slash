@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Items/TioItem.h"
+#include "Items/SlashItem.h"
 
-ATioItem::ATioItem()
+ASlashItem::ASlashItem()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
@@ -12,13 +12,13 @@ ATioItem::ATioItem()
 }
 
 
-void ATioItem::BeginPlay()
+void ASlashItem::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-void ATioItem::Tick(float DeltaTime)
+void ASlashItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
@@ -26,12 +26,12 @@ void ATioItem::Tick(float DeltaTime)
 	
 }
 
-float ATioItem::TransformedSin()
+float ASlashItem::TransformedSin()
 {
 	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
 }
 
-float ATioItem::TransformedCos()
+float ASlashItem::TransformedCos()
 {
 	return Amplitude * FMath::Cos(RunningTime * TimeConstant);
 }

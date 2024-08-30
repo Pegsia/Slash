@@ -16,10 +16,15 @@ public class Slash : ModuleRules
 			"InputCore", 
 			"HairStrandsCore",
 			"EnhancedInput",
-			"Niagara"
+			"Niagara",
+			"GameplayAbilities"
 		});
 
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
+		PrivateDependencyModuleNames.AddRange(new string[]
+		{
+			"GameplayTags",
+			"GameplayTasks",
+		});
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

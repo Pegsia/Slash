@@ -4,15 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TioItem.generated.h"
+#include "SlashItem.generated.h"
 
 UCLASS()
-class SLASH_API ATioItem : public AActor
+class SLASH_API ASlashItem : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
-	ATioItem();
+	ASlashItem();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UStaticMeshComponent> StaticMeshComponent;

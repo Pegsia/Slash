@@ -4,14 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "TioPlayerController.generated.h"
+#include "SlashPlayerController.generated.h"
 
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 
 UCLASS()
-class SLASH_API ATioPlayerController : public APlayerController
+class SLASH_API ASlashPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
@@ -27,5 +27,13 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UInputAction> LookUpAction;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UInputAction> TurnAction;
+	
 	void Move(const FInputActionValue& InputActionValue);
+	void LookUp(const FInputActionValue& InputActionValue);
+	void Turn(const FInputActionValue& InputActionValue);
 };
