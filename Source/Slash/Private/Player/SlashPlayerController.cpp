@@ -5,6 +5,7 @@
 
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "GameFramework/Character.h"
 
 
 void ASlashPlayerController::BeginPlay()
@@ -29,8 +30,14 @@ void ASlashPlayerController::SetupInputComponent()
 	EnhancedInputComponent->BindAction(TurnAction, ETriggerEvent::Triggered, this, &ThisClass::Turn);
 }
 
-void ASlashPlayerController::Move(const FInputActionValue& InputActionValue)
+void ASlashPlayerController::OnPossess(APawn* InPawn)
 {
+	Super::OnPossess(InPawn);
+	Cast<UEnhancedInputComponent>(InputComponent)->BindAction(JumpAction, ETriggerEvent::Triggered, Cast<ACharacter>(InPawn), &ACharacter::Jump);
+}
+
+void ASlashPlayerController::Move(const FInputActionValue& InputActionValue){
+	
 	const FVector2D InputActionVector = InputActionValue.Get<FVector2D>();
 
 	const FRotator YawRotation(0.f, GetControlRotation().Yaw, 0.f);

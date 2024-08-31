@@ -3,6 +3,8 @@
 
 #include "Character/SlashCharacterBase.h"
 
+#include "EnhancedInputComponent.h"
+
 ASlashCharacterBase::ASlashCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;

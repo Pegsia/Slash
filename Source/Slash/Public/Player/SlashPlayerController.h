@@ -18,6 +18,7 @@ class SLASH_API ASlashPlayerController : public APlayerController
 public:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
+	virtual void OnPossess(APawn* InPawn) override;
 
 private:
 	// Input
@@ -32,6 +33,9 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputAction> TurnAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UInputAction> JumpAction;
 	
 	void Move(const FInputActionValue& InputActionValue);
 	void LookUp(const FInputActionValue& InputActionValue);

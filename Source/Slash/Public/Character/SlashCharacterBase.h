@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "SlashCharacterBase.generated.h"
 
+class UInputAction;
 class UAttributeSet;
 
 UCLASS()
@@ -20,7 +21,6 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const;
 
-	
 protected:
 	virtual void BeginPlay() override;
 
