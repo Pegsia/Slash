@@ -24,10 +24,17 @@ public:
 	float TimeConstant = 5.f;
 
 	UFUNCTION(BlueprintPure)
-	float TransformedSin();
+	float TransformedSin() const;
 
 	UFUNCTION(BlueprintPure)
-	float TransformedCos();
+	float TransformedCos() const;
+
+	UFUNCTION(BlueprintCallable)
+	virtual void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
+
+	UFUNCTION(BlueprintCallable)
+	virtual void OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	
 protected:
 	virtual void BeginPlay() override;
 
